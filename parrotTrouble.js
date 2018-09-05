@@ -1,3 +1,3 @@
-function parrotTrouble(a, b) {
-  //to be solved
+function parrotTrouble(talking, hour){
+  return (talking && (hour > 20 || hour < 7));
 }
