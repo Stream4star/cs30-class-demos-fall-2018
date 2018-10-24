@@ -2,8 +2,8 @@
 // Dan Schellenberg
 // Oct 24, 2018
 
-let rows = 5;
-let cols = 5;
+let rows = 10;
+let cols = 10;
 let grid;
 let cellSize;
 
@@ -16,6 +16,18 @@ function setup() {
 function draw() {
   background(255);
   displayGrid();
+}
+
+function mousePressed() {
+  let x = floor(mouseX / cellSize);
+  let y = floor(mouseY / cellSize);
+
+  if (grid[y][x] === 1) {
+    grid[y][x] = 0;
+  }
+  else if (grid[y][x] === 0) {
+    grid[y][x] = 1;
+  }
 }
 
 function displayGrid() {
