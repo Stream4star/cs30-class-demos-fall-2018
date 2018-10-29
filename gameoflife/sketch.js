@@ -2,8 +2,8 @@
 // Dan Schellenberg
 // Oct 24, 2018
 
-let rows = 20;
-let cols = 20;
+let rows = 40;
+let cols = 40;
 let grid;
 let cellSize;
 
