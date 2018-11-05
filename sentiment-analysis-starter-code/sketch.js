@@ -40,7 +40,7 @@ function learnWordScores() {
   //need to loop through the information from the text file, and assign appropriate scores to each word
   for (let line=0; line<reviewData.length; line++) {
     let wordList = reviewData[line].split(" ");
-    
+    console.log(Number(wordList[0]));
     //add your logic here!!
 
   }
@@ -49,7 +49,7 @@ function learnWordScores() {
 function runAnalysis() {
   let wordsToLookup = phraseInput.value().split(" ");
   // you need to look up each word typed in, which is given in the array above.
-  // use those to calculate whether the average sentiment of all the words put together 
+  // use those to calculate whether the average sentiment of all the words put together
 
 
 
