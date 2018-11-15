@@ -36,9 +36,15 @@ function setup() {
 function draw() {
   background(0);
 
-  for (let i=0; i<fireworks.length; i++) {
-    fireworks[i].update();
-    fireworks[i].display();
+  for (let i=fireworks.length-1; i>=0; i--) {
+    if (fireworks[i].transparency <= 0) {
+      //delete this firework -- already hidden
+      fireworks.splice(i, 1);
+    }
+    else {
+      fireworks[i].update();
+      fireworks[i].display();
+    }
   }
 
 }
