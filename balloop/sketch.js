@@ -5,15 +5,21 @@ class Ball {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.radius = 100;
+    this.radius = 50;
     this.dx = random(-10, 10);
     this.dy = random(-10, 10);
     this.color = color(random(255), random(255), random(255), 120);
+    this.isCollidingRightNow = false;
   }
 
   display() {
     noStroke();
-    fill(this.color);
+    if (this.isCollidingRightNow) {
+      fill(255, 0, 0, 255);
+    }
+    else {
+      fill(this.color);
+    }
     ellipse(this.x, this.y, this.radius*2, this.radius*2);
   }
 
@@ -28,6 +34,13 @@ class Ball {
       this.dx *= -1;
     }
   }
+
+  checkForCollision(otherBall) {
+    if (dist(this.x, this.y, otherBall.x, otherBall.y) <= this.radius + otherBall.radius) {
+      // the balls are colliding!!
+      this.isCollidingRightNow = true;
+    }
+  }
 }
 
 let ballArray = [];
@@ -40,6 +53,12 @@ function setup() {
 function draw() {
   background(0);
   for (let i = ballArray.length - 1; i >= 0; i--) {
+    ballArray[i].isCollidingRightNow = false;
+    for (let j = 0; j < ballArray.length; j++) {
+      if (i !== j) {  //don't check collision against self...
+        ballArray[i].checkForCollision(ballArray[j]);
+      }
+    }
     ballArray[i].update();
     ballArray[i].display();
   }
