@@ -39,6 +39,12 @@ class Ball {
     if (dist(this.x, this.y, otherBall.x, otherBall.y) <= this.radius + otherBall.radius) {
       // the balls are colliding!!
       this.isCollidingRightNow = true;
+      let tempDx = this.dx;
+      let tempDy = this.dy;
+      this.dx = otherBall.dx;
+      this.dy = otherBall.dy;
+      otherBall.dx = tempDx;
+      otherBall.dy = tempDy;
     }
   }
 }
