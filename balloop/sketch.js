@@ -16,11 +16,10 @@ class Ball {
     noStroke();
     if (this.isCollidingRightNow) {
       fill(255, 0, 0, 255);
-    }
-    else {
+    } else {
       fill(this.color);
     }
-    ellipse(this.x, this.y, this.radius*2, this.radius*2);
+    ellipse(this.x, this.y, this.radius * 2, this.radius * 2);
   }
 
   update() {
@@ -61,7 +60,7 @@ function draw() {
   for (let i = ballArray.length - 1; i >= 0; i--) {
     ballArray[i].isCollidingRightNow = false;
     for (let j = 0; j < ballArray.length; j++) {
-      if (i !== j) {  //don't check collision against self...
+      if (i !== j) { //don't check collision against self...
         ballArray[i].checkForCollision(ballArray[j]);
       }
     }
