@@ -4,13 +4,14 @@
 // Nov 22, 2018
 
 class Bullet {
-  constructor(x, y, dx, dy) {
+  constructor(x, y, dx, dy, theImage) {
     this.x = x;
     this.y = y;
     this.dx = dx;
     this.dy = dy;
     this.radius = 5;
     this.offScreen = false;
+    this.imageToDisplay = theImage;
   }
 
   update() {
@@ -22,19 +23,22 @@ class Bullet {
   }
 
   display() {
-    fill(0);
-    ellipse(this.x, this.y, this.radius, this.radius);
+    // fill(0);
+    // ellipse(this.x, this.y, this.radius, this.radius);
+    imageMode(CENTER);
+    image(this.imageToDisplay, this.x, this.y);
   }
 }
 
 class Ship {
-  constructor(x, y) {
+  constructor(x, y, theImage) {
     this.x = x;
     this.y = y;
+    this.imageToDisplay = theImage;
     this.dx = 5;
     this.dy = 5;
-    this.w = 100;
-    this.h = 20;
+    this.w = this.imageToDisplay.width;
+    this.h = this.imageToDisplay.height;
     this.bulletArray = [];
     this.isMovingUp = false;
     this.isMovingDown = false;
@@ -58,7 +62,7 @@ class Ship {
 
     if (key === " ") {
       //fire photons!!!
-      let someBullet = new Bullet(this.x + this.w/2, this.y, 0, -10);
+      let someBullet = new Bullet(this.x, this.y, 0, -10, bulletImage);
       this.bulletArray.push(someBullet);
     } 
   }
@@ -104,21 +108,29 @@ class Ship {
   }
 
   display() {
-    fill(0);
-    rect(this.x, this.y, this.w, this.h); 
+    // fill(0);
+    // rect(this.x, this.y, this.w, this.h); 
+    imageMode(CENTER);
+    image(this.imageToDisplay, this.x, this.y + this.h / 2);
   }
 
 }
 
 let enterprise;
+let shipImage, bulletImage;
+
+function preload() {
+  shipImage = loadImage("assets/enterprise.png");
+  bulletImage = loadImage("assets/laser-shot.png");
+}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  enterprise = new Ship(width / 2, height / 2);
+  enterprise = new Ship(width / 2, height / 2, shipImage);
 }
 
 function draw() {
-  background(255);
+  background(0);
   enterprise.update();
   enterprise.display();
 }
