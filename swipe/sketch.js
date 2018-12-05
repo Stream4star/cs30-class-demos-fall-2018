@@ -60,3 +60,5 @@ function swiped(event) {
   console.log(whichImage);
   whichImage = whichImage % imagesArray.length;
 }
+
+
